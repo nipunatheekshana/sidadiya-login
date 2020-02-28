@@ -1,0 +1,217 @@
+html {
+  background-color: #eff0f5;
+  width: 100vw;
+  height: 100vh;
+}
+
+.finish {
+  color: #96e6a1;
+}
+
+#map {
+  height: 50%;
+}
+
+a {
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.regtag {
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-left: -10px;
+}
+
+.uk-modal-dialog {
+  border-radius: 5px;
+}
+
+.idicator.disable {
+  pointer-events: none;
+  cursor: default;
+}
+
+.incorrectcode {
+  background-color: #e77070;
+  color: white;
+}
+.correctcode {
+  background-color: #32d296;
+  color: white;
+}
+
+.tryagainbtn {
+  color: white;
+  border: 1px solid white;
+}
+
+.tryagainbtn:hover {
+     background-color: black;
+     color: #e77070;
+     border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.loginbtn2 {
+  color: white;
+  border: 1px solid white;
+}
+
+.loginbtn2:hover {
+     background-color: black;
+     color: #32d296;
+     border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.uk-input {
+  border-radius: 5em;
+}
+
+.uk-button {
+  border-radius: 5px;
+}
+
+.uk-heading-line {
+  font-family: "Comfortaa", cursive;
+}
+
+.uk-select {
+  border-radius: 5px;
+}
+
+.logincard {
+  margin-top: 10vh;
+}
+
+.regbtn {
+  background-color: #f85e5e;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px #f85e5e;
+  border: 1px solid transparent;
+}
+
+.regbtn:hover {
+  background-color: transparent;
+  border: 1px solid #f85e5e;
+  border-radius: 5px;
+  color: #f85e5e;
+  box-shadow: none;
+}
+
+.backbtn {
+  background-color: #212121;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px #212121;
+  border: 1px solid transparent;
+  color: #ffffff;
+}
+
+.backbtn:hover {
+  background-color: transparent;
+  border: 1px solid #212121;
+  border-radius: 5px;
+  color: #212121;
+  box-shadow: none;
+}
+
+.nextbtn {
+  background-color: #f8ae5e;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px #f8ae5e;
+  border: 1px solid transparent;
+}
+
+.nextbtn:hover {
+  background-color: transparent;
+  border: 1px solid #f8ae5e;
+  border-radius: 5px;
+  color: #f8ae5e;
+  box-shadow: none;
+}
+
+.loginbtn {
+  color: #ffffff;
+  background-color: #5e90f8;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px #5e90f8;
+  border: 1px solid transparent;
+}
+
+.loginbtn:hover {
+  background-color: transparent;
+  border: 1px solid #5e90f8;
+  border-radius: 5px;
+  color: #5e90f8;
+  box-shadow: none;
+}
+
+.regbtn {
+  color: #ffffff;
+  background-color: #f85e5e;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px #f85e5e;
+  border: 1px solid transparent;
+}
+
+.regbtn:hover {
+  background-color: transparent;
+  border: 1px solid #f85e5e;
+  border-radius: 5px;
+  color: #f85e5e;
+  box-shadow: none;
+}
+
+.regbtn:active {
+  background-color: transparent;
+  border: 1px solid #f85e5e;
+  border-radius: 5px;
+  color: #f85e5e;
+  box-shadow: none;
+}
+
+.uk-card {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.col1 {
+  cursor: pointer;
+  color: black;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.col2 {
+  cursor: pointer;
+  color: black;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+/* Remove spinners from the input number */
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Mobile view */
+@media only screen and (max-width: 960px) {
+  .uk-text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .uk-button {
+    padding: 0 15px;
+    line-height: 28px;
+    font-size: 0.875rem;
+  }
+}
