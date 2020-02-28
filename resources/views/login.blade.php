@@ -60,7 +60,7 @@ Designed by Nisal Keerthisinhge
                </div>
                <div>
                     <div class="uk-card-body  right">
-                         <form action="#" class="uk-width-expand uk-text-center" method="POST">
+                         <form action="/login" class="uk-width-expand uk-text-center" method="get">
                               <h2>Sidadiya</h2>
                               <!-- <div class="uk-card-title uk-text-light">Login</div> -->
 
@@ -72,17 +72,24 @@ Designed by Nisal Keerthisinhge
                               <div class="uk-margin">
                                    <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                                        <input class="uk-input" id="email" type="email" placeholder="Your email">
+                                        <input class="uk-input" name="email"  type="email" placeholder="Your email">
                                    </div>
+                                   @if(Session::get("email")=="email")
+                                        <span class="uk-text-small uk-margin-small-left uk-align-left uk-text-danger"><i class='fa fa-times-circle'></i> User not registered</span>
+                                   @endif
                               </div>
 
                               <!-- Password -->
                               <div class="uk-margin">
                                    <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                                        <input class="uk-input" id="password1" type="password"
-                                             placeholder="Your password">
+                                        <input class="uk-input" type="password" name="password" placeholder="Your password">
                                    </div>
+                                   @if(Session::has("pw"))
+                                   <div><span class="uk-text-small uk-margin-small-left uk-align-left uk-text-danger"><i class='fa fa-times-circle'></i> Wrong password</span></div>
+                                   @endif
+                            
+                              @csrf
                               </div>
                               <!-- Forgot password -->
                               <p class="uk-text-right">
@@ -95,10 +102,10 @@ Designed by Nisal Keerthisinhge
                                    class="uk-button uk-width-1-1 uk-button-primary uk-text-lighter regbtn ">
                                    <i class="fas fa-user-plus uk-margin-small-right"></i>Register
                               </a>
-                              <a id="login" type="submit" onclick="trige()"
+                              <button id="login" type="submit" 
                                    class="uk-button uk-width-1-1 uk-margin-top uk-button-primary uk-text-lighter loginbtn "><i
                                         class="fas fa-sign-in-alt uk-margin-small-right"></i>Login
-                              </a>
+                         </button>
 
                     </div>
                     </form>
@@ -171,17 +178,18 @@ Designed by Nisal Keerthisinhge
      </div>
 
      <!-- Popup section -->
+          
      <!-- Forgot password -->
      <div id="forgotpass" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
                <h2 class="uk-modal-title">Forgot password ?</h2>
                <p>Don't warry we forget everything sometimes :)</p>
-               <form action="" method="POST" class="uk-form-stacked">
+               <form action="/forget" method="get" class="uk-form-stacked">
                     <div class="uk-margin">
                          <label class="uk-form-label" for="form-stacked-text"><i class="fas fa-envelope"></i>
                               Email</label>
                          <div class="uk-form-controls">
-                              <input required class="uk-input" id="form-stacked-text" type="text" placeholder="Email">
+                              <input required class="uk-input" id="form-stacked-text" name="forgot" type="text" placeholder="Email">
                          </div>
                     </div>
 

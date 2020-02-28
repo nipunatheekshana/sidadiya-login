@@ -30,6 +30,8 @@ route::post('/verified','regcontroller@store');
 //loging controller
 route::get('/login','loginncontroller@log');
 
+//password forget
+route::get('/forget','passwordresetcontroller@reset');
 
 
 
