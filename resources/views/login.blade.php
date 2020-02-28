@@ -60,7 +60,7 @@ Designed by Nisal Keerthisinhge
                </div>
                <div>
                     <div class="uk-card-body  right">
-                         <form action="/login" class="uk-width-expand uk-text-center" method="get">
+                         <form action="#" class="uk-width-expand uk-text-center" method="POST">
                               <h2>Sidadiya</h2>
                               <!-- <div class="uk-card-title uk-text-light">Login</div> -->
 
@@ -72,117 +72,102 @@ Designed by Nisal Keerthisinhge
                               <div class="uk-margin">
                                    <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                                        <input class="uk-input"  name="email" type="email" placeholder="Your email">
-                                      
+                                        <input class="uk-input" id="email" type="email" placeholder="Your email">
                                    </div>
-                                   @if(Session::get("email")=="email")
-                                        <span class="uk-text-small uk-margin-small-left uk-align-left uk-text-danger"><i class='fa fa-times-circle'></i> User not registered</span>
-                                   @endif
-
                               </div>
-                                
+
                               <!-- Password -->
                               <div class="uk-margin">
                                    <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                                        <input class="uk-input" name="password" type="password" placeholder="Your password"
-                                        namr="password">
+                                        <input class="uk-input" id="password1" type="password"
+                                             placeholder="Your password">
                                    </div>
                               </div>
-
-                                   @if(Session::has("pw"))
-                                   <div><span class="uk-text-small uk-margin-small-left uk-align-left uk-text-danger"><i class='fa fa-times-circle'></i> Wrong password</span></div>
-                                   @endif
-                            
-                              @csrf
+                              <!-- Forgot password -->
+                              <p class="uk-text-right">
+                                   <a href="#forgotpass" uk-toggle style="text-decoration:none">Forgot password ?</a>
+                              </p>
 
                               <!-- Login buttons -->
-                              <div class="uk-grid-small uk-child-width-1-2@l uk-margin-small-top uk-margin-bottom" uk-grid>
-                                   <div class="uk-text-nowrap">
-                                        <button  id="login" type="submit"  class="uk-button uk-button-primary uk-text-lighter loginbtn">
-                                             <i class="fas fa-sign-in-alt uk-margin-small-right"></i>Login
-                                        </button>
-                                   </div>
 
-                                   <div class="uk-text-nowrap">
-                                        <a href="#" type="button" uk-toggle="target: #regtype"
-                                             class="uk-button uk-button-primary uk-text-lighter regbtn ">
-                                             <i class="fas fa-user-plus uk-margin-small-right"></i>Register
-                                        </a>
-                                   </div>
-                              </div>
-                                <!-- Forgot password -->
-                                <span class="uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom uk-margin-top">
-                                   <a href="#forgotpass" uk-toggle style="text-decoration:none">Forgot password ?</a>
-                              </span>   
-                         </form>
+                              <a href="#" type="button" uk-toggle="target: #regtype"
+                                   class="uk-button uk-width-1-1 uk-button-primary uk-text-lighter regbtn ">
+                                   <i class="fas fa-user-plus uk-margin-small-right"></i>Register
+                              </a>
+                              <a id="login" type="submit" onclick="trige()"
+                                   class="uk-button uk-width-1-1 uk-margin-top uk-button-primary uk-text-lighter loginbtn "><i
+                                        class="fas fa-sign-in-alt uk-margin-small-right"></i>Login
+                              </a>
 
+                    </div>
+                    </form>
 
-                         <!-- Registration type popup modal -->
-                         <div id="regtype" uk-modal>
-                              <div class="uk-modal-dialog">
-                                   <div class="uk-modal-body">
+                    <!-- Registration type popup modal -->
+                    <div id="regtype" uk-modal>
+                         <div class="uk-modal-dialog">
+                              <div class="uk-modal-body">
 
-                                        <div class="uk-grid-small uk-child-width-expand@s uk-text-center uk-grid-match"
-                                             uk-grid>
-                                             <!-- Earning account card  -->
-                                             <div>
-                                                  <div id="eacc" style="text-decoration: none;"
-                                                       class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body  col1">
-                                                       <i class="fas fa-coins fa-2x"></i>
+                                   <div class="uk-grid-small uk-child-width-expand@s uk-text-center uk-grid-match"
+                                        uk-grid>
+                                        <!-- Earning account card  -->
+                                        <div>
+                                             <div id="eacc" style="text-decoration: none;"
+                                                  class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body  col1">
+                                                  <i class="fas fa-coins fa-2x"></i>
 
-                                                       <div class="uk-text-large">Earning Account</div>
-                                                       <ul class="uk-list uk-list-bullet uk-text-left">
-                                                            <li>Like & Share Posts</li>
-                                                            <li>Earn Real Money</li>
-                                                            <li>Make Friends</li>
+                                                  <div class="uk-text-large">Earning Account</div>
+                                                  <ul class="uk-list uk-list-bullet uk-text-left">
+                                                       <li>Like & Share Posts</li>
+                                                       <li>Earn Real Money</li>
+                                                       <li>Make Friends</li>
 
-                                                            <div class="uk-text-center animated pulse infinite"><span
-                                                                      class="uk-text-large uk-text-bold">FREE</span>
-                                                            </div>
-                                                       </ul>
-                                                  </div>
-
+                                                       <div class="uk-text-center animated pulse infinite"><span
+                                                                 class="uk-text-large uk-text-bold">FREE</span>
+                                                       </div>
+                                                  </ul>
                                              </div>
-                                             <!--END Earning account card  -->
 
-                                             <!-- Shopping account -->
-                                             <div>
-                                                  <div id="sacc"
-                                                       class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body col2">
-                                                       <i class="fas fa-store fa-2x"></i>
-                                                       <div class="uk-text-large">Shop Account</div>
-                                                       <ul class="uk-list uk-list-bullet uk-text-left">
-                                                            <li>Publish your shop</li>
-                                                            <li>Sell your products</li>
-
-                                                            <span
-                                                                 class="uk-label uk-label-danger animated pulse infinite uk-align-center uk-text-center">Promotion</span>
-                                                            <div class="uk-text-center uk-margin-small-top"
-                                                                 style="text-decoration: line-through; color: #3e3e3e;">
-                                                                 Rs. <span class="uk-text-bold">2,500/=</span>
-                                                            </div>
-                                                            <div class="uk-text-center">Rs.<span
-                                                                      class="uk-text-large uk-text-bold">500/=</span>
-                                                            </div>
-
-                                                       </ul>
-                                                  </div>
-                                             </div>
-                                             <!-- END Shopping account -->
                                         </div>
+                                        <!--END Earning account card  -->
 
-                                        <!-- Footer -->
-                                        <p class="uk-align-right uk-margin-top">
-                                             <button
-                                                  class="uk-button uk-button-small uk-button-danger uk-modal-close">Close</button>
-                                        </p>
+                                        <!-- Shopping account -->
+                                        <div>
+                                             <div id="sacc"
+                                                  class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body col2">
+                                                  <i class="fas fa-store fa-2x"></i>
+                                                  <div class="uk-text-large">Shop Account</div>
+                                                  <ul class="uk-list uk-list-bullet uk-text-left">
+                                                       <li>Publish your shop</li>
+                                                       <li>Sell your products</li>
+
+                                                       <span
+                                                            class="uk-label uk-label-danger animated pulse infinite uk-align-center uk-text-center">Promotion</span>
+                                                       <div class="uk-text-center uk-margin-small-top"
+                                                            style="text-decoration: line-through; color: #3e3e3e;">
+                                                            Rs. <span class="uk-text-bold">2,500/=</span>
+                                                       </div>
+                                                       <div class="uk-text-center">Rs.<span
+                                                                 class="uk-text-large uk-text-bold">500/=</span>
+                                                       </div>
+
+                                                  </ul>
+                                             </div>
+                                        </div>
+                                        <!-- END Shopping account -->
                                    </div>
+
+                                   <!-- Footer -->
+                                   <p class="uk-align-right uk-margin-top">
+                                        <button
+                                             class="uk-button uk-button-small uk-button-danger uk-modal-close">Close</button>
+                                   </p>
                               </div>
                          </div>
                     </div>
                </div>
           </div>
+     </div>
      </div>
 
      <!-- Popup section -->
@@ -196,7 +181,7 @@ Designed by Nisal Keerthisinhge
                          <label class="uk-form-label" for="form-stacked-text"><i class="fas fa-envelope"></i>
                               Email</label>
                          <div class="uk-form-controls">
-                              <input required class="uk-input" autocomplete="off" type="text" placeholder="Email">
+                              <input required class="uk-input" id="form-stacked-text" type="text" placeholder="Email">
                          </div>
                     </div>
 
