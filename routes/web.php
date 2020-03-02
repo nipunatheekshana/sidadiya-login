@@ -16,6 +16,11 @@ Route::get('/', function () {
     return view('login');
 });
 
+//login page
+Route::get('/expire', function () {
+ 
+    return view('password.linkexpired');
+});
 //first register page
 Route::get('/reg', function () {
     return view('earn.reg1');
@@ -38,6 +43,12 @@ route::get('/login/{Token}/edit','passwordresetcontroller@edit');
 
 //resetting password
 route::patch('/login/{id}','passwordresetcontroller@update');
+
+
+
+
+
+
 
 
 

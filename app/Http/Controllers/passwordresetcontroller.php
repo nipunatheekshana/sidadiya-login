@@ -60,20 +60,22 @@ class passwordresetcontroller extends Controller
             //send verification link email 
             Mail::to(request('forgot'))->send(new Pwreset($link));
 
-            return view('login');
+            return back()->with('done', 'success');
 
             }
             else{
 
                 //if link is already sent
-                echo "reset link allredy sent check your email";
+                return back()->with('users', 'success');
+              
             }
             
 
         }
         else{
             //if user not exsist
-            echo "user not exsists";
+            return back()->with('usern', 'success');
+             
         }
         
     }
@@ -81,22 +83,42 @@ class passwordresetcontroller extends Controller
 
         //validating the token
         $id = Resettoken::select('uid')->where('token',$Token)->first();
-        $uid=$id->uid;
-        return view('passwordreset',compact('uid'));
+        if($id!=null){
+
+            $uid=$id->uid;
+            return view('password.passwordreset',compact('uid'));
+        }
+        else{
+            return redirect('/expire');
+        }
+       
 
     }
     public function update($id){
 
         //resetting the password
-        User::where('id', $id)->update( array('password'=>request('newpassword')));
+        $update=User::where('id', $id)->update( array('password'=>request('newpassword')));
 
         //delete password reset token
         Resettoken::where('uid', $id)->delete();
 
-        return view('login');
+        $uid=$id;
+
+        if($update = 1){
 
 
+            request()->session()->flash('success', 'success');
+            return view('password.passwordreset',compact('uid'));
+        }
+        else{
+
+            request()->session()->flash('fail', 'fail');
+            return view('password.passwordreset',compact('uid'));
+            
+        }
+       
 
     }
+    
     
 }

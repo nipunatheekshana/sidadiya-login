@@ -53,12 +53,12 @@
     <div class="uk-flex uk-flex-center uk-margin-large-top">
         <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m ">
             <h3 class="uk-card-title">Reset password</h3>
-            <img src="../assets/password.svg" class="uk-align-center" width="400" alt="">
+            <img src="{{url('assets/password.svg')}}" class="uk-align-center" width="400" alt="">
 
 
             <form class="uk-form-stacked uk-text-center" action="/login/{{$uid}}" method="POST">
                 <div class="uk-margin">
-                    
+
                     @method('patch')
                     <!-- Strength meter -->
 
@@ -94,7 +94,7 @@
                             class="fas fa-chevron-circle-left"></i> Back</a>
                             @csrf
                 <!-- Submit button -->
-                    <button class="uk-button uk-button-default" type="submit" id="submitbtn"><i
+                    <button class="uk-button uk-button-default" disabled type="submit" id="submitbtn"><i
                             class="fa fa-check-circle"></i>
                         Submit</button>
 
@@ -105,27 +105,49 @@
     </div>
 
     <!-- Popup section -->
-    <!-- Forgot password -->
-    <div id="forgotpass" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            <h2 class="uk-modal-title">Forgot password ?</h2>
-            <p>Don't warry we forget everything sometimes :)</p>
-            <form action="" method="POST" class="uk-form-stacked">
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-stacked-text"><i class="fas fa-envelope"></i>
-                        Email</label>
-                    <div class="uk-form-controls">
-                        <input required class="uk-input" id="form-stacked-text" type="text" placeholder="Email">
-                    </div>
-                </div>
-
-                <p class="uk-text-right">
-                    <a class="uk-button uk-button-default uk-modal-close" type="button">Cancel</a>
-                    <button class="uk-button uk-button-primary" type="submit">Submit</button>
-                </p>
-            </form>
-        </div>
+    
+   <!-- Password reset success -->
+<div id="reset-success" uk-modal  bg-close='false' esc-close='false'>
+    <div class="uk-modal-dialog uk-modal-body uk-text-center" style="background-color: #32d296;">
+    <img src="{{url('assets/password.svg')}}" width="400" alt="">
+        <p class="uk-text-large" style="color: white;">Password successfully updated !</p>
+        <p class="uk-text-right">
+            <a href="/" class="uk-button" style="background-color: white;" type="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </p>
     </div>
+</div>
+
+<!-- Password reset unsuccess -->
+<div id="reset-unsuccess" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-text-center" style="background-color: #f0506e">
+        <img src="../assets/oopz.svg" width="400" alt="">
+        <p class="uk-text-large" style="color: white;">Something went wrong !<br><span class="uk-text-small">Try again later or Contact Sidadiya team</span></p>
+        <p class="uk-text-right">
+            <button class="uk-button uk-modal-close" style="background-color: white;" type="button"><i class="fas fa-times-circle"></i> Close</button>
+        </p>
+    </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+ <!--load messages modals -->
+ @if(Session::has("success"))
+ <script>
+      $( document ).ready(function() {
+      UIkit.modal('#reset-success').show();
+      });
+ </script>
+@elseif(Session::has("fail"))
+ <script>
+      $( document ).ready(function() {
+      UIkit.modal('#reset-unsuccess').show();
+      });
+ </script>
+@endif
+
 
 
     <!-- jQuery -->

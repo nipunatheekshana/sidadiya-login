@@ -181,26 +181,64 @@ Designed by Nisal Keerthisinhge
           
      <!-- Forgot password -->
      <div id="forgotpass" uk-modal>
-          <div class="uk-modal-dialog uk-modal-body">
-               <h2 class="uk-modal-title">Forgot password ?</h2>
+          <div class="uk-modal-dialog uk-modal-body uk-text-center">
+               <img src="../assets/tenor.gif" width="300" alt="Loading...">
+               <h2 class="uk-text-large">Forgot your password ?</h2>
                <p>Don't warry we forget everything sometimes :)</p>
                <form action="/forget" method="get" class="uk-form-stacked">
                     <div class="uk-margin">
                          <label class="uk-form-label" for="form-stacked-text"><i class="fas fa-envelope"></i>
                               Email</label>
                          <div class="uk-form-controls">
-                              <input required class="uk-input" id="form-stacked-text" name="forgot" type="text" placeholder="Email">
+                              <input required class="uk-input" id="forgot" name="forgot" type="text" placeholder="Email">
                          </div>
+                         <p id="forgot_message"></p>
                     </div>
 
                     <p class="uk-text-right">
                          <a class="uk-button uk-button-default uk-modal-close" type="button">Cancel</a>
-                         <button class="uk-button uk-button-primary" type="submit">Submit</button>
+                         <button class="uk-button uk-button-primary" type="submit" >Submit</button>
                     </p>
                </form>
           </div>
      </div>
 
+     <script
+     src="https://code.jquery.com/jquery-3.4.1.min.js"
+     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+     crossorigin="anonymous"></script>
+
+     @if(Session::has("usern"))
+     <script>
+          $( document ).ready(function() {
+               Swal.fire(
+                    'OOpz!',
+                    'You are not registered!',
+                    'error'
+                         )
+          });
+     </script>
+    @elseif(Session::has("users"))
+     <script>
+          $( document ).ready(function() {
+               Swal.fire(
+                    'The link is already sent!',
+                    'Please check your email!',
+                    'warning'
+                         )
+          });
+     </script>
+     @elseif(Session::has("done"))
+     <script>
+          $( document ).ready(function() {
+               Swal.fire(
+                    'Reset link has been sent!',
+                    'Please check your email!',
+                    'success'
+                         )
+          });
+     </script>
+    @endif
 
      <!-- jQuery -->
      <script src=" https://code.jquery.com/jquery-3.4.1.min.js"
@@ -216,7 +254,7 @@ Designed by Nisal Keerthisinhge
 
      <!-- Custom js -->
      <script src="../js/script.js"></script>
-
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
      <script>
 
           //     iziToast login error
@@ -226,6 +264,7 @@ Designed by Nisal Keerthisinhge
                     title: '<span class="uk-text-middle">Incorrect credentials</span>',
                })
           }
+
 
      </script>
 </body>
