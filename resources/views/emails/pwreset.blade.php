@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-{{$x}}<br>
+<a href="{{$x}}">click here</a><br>
 Click the Password reset link.
 
 

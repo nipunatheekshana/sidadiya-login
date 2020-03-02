@@ -10,27 +10,93 @@ use App\Mail\Pwreset;
 use Illuminate\Support\Facades\Mail;
 //modal location for check
 use App\User;
+use App\Resettoken;
+//for getting time
+use Carbon\Carbon;
 
 class passwordresetcontroller extends Controller
 {
 
     public function reset(){
 
-
+        //check if email is registered
         $email = User::select('email')->where('email',request('forgot'))->first();
 
         if($email!=null){
+            //email is registered
 
+            //getting users id
             $id = User::select('id')->where('email',$email->email)->first();
-            $link='mw';
+
+            //check if the link is already sent
+            $uid = Resettoken::select('uid')->where('uid',$id->id)->first();
+
+            if($uid==null){
+            //if the link is not alredy sent
+            
+            //generating verification token
+            $now = Carbon::now();
+            $token1 = $now->format('mYdHisu');
+            $token= dechex($token1);
+            
+            //check if the token already exsist
+            $x=Resettoken::select('uid')->where('token',$token)->first();
+            while ($x!=null){
+                //if the token alredy exsist
+                $now = Carbon::now();
+                $token1 = $now->format('mYdHisu');
+                $token= dechex($token1);
+            }
+
+            //the link
+            $link=url("http://127.0.0.1:8000/login/{$token}/edit");
+
+            //saving the reset token in the data base
+            $rtoken=new \App\Resettoken();
+            $rtoken->uid=$id->id;
+            $rtoken->token=$token; 
+            $rtoken->save();
+
             //send verification link email 
             Mail::to(request('forgot'))->send(new Pwreset($link));
+
+            return view('login');
+
+            }
+            else{
+
+                //if link is already sent
+                echo "reset link allredy sent check your email";
+            }
+            
+
         }
         else{
-
-            
+            //if user not exsist
+            echo "user not exsists";
         }
         
+    }
+    public function edit($Token){
+
+        //validating the token
+        $id = Resettoken::select('uid')->where('token',$Token)->first();
+        $uid=$id->uid;
+        return view('passwordreset',compact('uid'));
+
+    }
+    public function update($id){
+
+        //resetting the password
+        User::where('id', $id)->update( array('password'=>request('newpassword')));
+
+        //delete password reset token
+        Resettoken::where('uid', $id)->delete();
+
+        return view('login');
+
+
+
     }
     
 }

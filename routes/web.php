@@ -33,6 +33,13 @@ route::get('/login','loginncontroller@log');
 //password forget
 route::get('/forget','passwordresetcontroller@reset');
 
+//password reset link
+route::get('/login/{Token}/edit','passwordresetcontroller@edit');
+
+//resetting password
+route::patch('/login/{id}','passwordresetcontroller@update');
+
+
 
 
 
